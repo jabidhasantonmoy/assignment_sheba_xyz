@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../utils/media_size.dart';
+import '../media_size.dart';
 import 'app_color.dart';
 
 class TStyle {

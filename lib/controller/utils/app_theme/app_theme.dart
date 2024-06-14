@@ -1,8 +1,8 @@
-import 'package:assignment_sheba_xyz/controller/app_theme/text_style.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/media_size.dart';
+import '../media_size.dart';
 import 'app_color.dart';
+import 'text_style.dart';
 
 class AppTheme {
   // dark Theme

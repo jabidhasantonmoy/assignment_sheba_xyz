@@ -1,13 +1,32 @@
 import 'package:assignment_sheba_xyz/controller/utils/media_size.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../controller/app_theme/app_color.dart';
-import '../controller/app_theme/text_style.dart';
+import '../controller/bloc/bloc/movies_bloc/movies_cubit.dart';
+import '../controller/utils/app_theme/app_color.dart';
+import '../controller/utils/app_theme/text_style.dart';
 import 'widgets/common_widgets/common_page_body.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const String routeName = '/homePage';
+
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool calledOnce = false;
+
+  @override
+  void didChangeDependencies() {
+    if (!calledOnce) {
+      calledOnce = true;
+      context.watch<MoviesCubit>().getMovies();
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,17 +73,26 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      ListView.builder(
-                        itemCount: 100,
-                        // physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Text(
-                            'Find Movies, TV Series and more...',
-                            style: TStyle.roboto(
-                              fontSize: 10,
-                            ),
-                          );
+                      BlocBuilder<MoviesCubit, MoviesState>(
+                        builder: (context, state) {
+                          if (state is MoviesLoaded) {
+                            return ListView.builder(
+                              itemCount: state.moviesModel.results?.length,
+                              // physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Text(
+                                  state.moviesModel.results![index].title!,
+                                  style: TStyle.roboto(
+                                    fontSize: 10,
+                                  ),
+                                );
+                              },
+                            );
+                          } else {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
                         },
                       ),
                       ListView.builder(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../view/home_page.dart';
+import '../../../view/home_page.dart';
 
 class AppRoutes {
   static Route? onGenerate(RouteSettings settings) {

@@ -8,3 +8,12 @@ final class MoviesInitial extends MoviesState {
   @override
   List<Object> get props => [];
 }
+
+final class MoviesLoaded extends MoviesState {
+  final MoviesModel moviesModel;
+
+  const MoviesLoaded(this.moviesModel);
+
+  @override
+  List<Object> get props => [moviesModel];
+}
