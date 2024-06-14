@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'controller/app_routes/app_routes.dart';
+import 'controller/app_theme/app_theme.dart';
 import 'view/home_page.dart';
 
 void main() {
@@ -15,10 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.darkMode,
       initialRoute: HomePage.routeName,
       onGenerateRoute: AppRoutes.onGenerate,
     );
