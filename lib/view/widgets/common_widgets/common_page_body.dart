@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../controller/utils/media_size.dart';
+
 Widget commonPageBody({Widget? child}) {
   return SafeArea(
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(15, 15, 15, 10),
+      padding: EdgeInsets.fromLTRB(
+        fixedRatio(15),
+        fixedRatio(15),
+        fixedRatio(15),
+        fixedRatio(10),
+      ),
       child: child,
     ),
   );
